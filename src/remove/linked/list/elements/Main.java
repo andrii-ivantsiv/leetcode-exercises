@@ -1,4 +1,4 @@
-package com.leetcode.problems.remove.linked.list.elements;
+package remove.linked.list.elements;
 
 /**
  * Given the head of a linked list and an integer val, remove all the nodes of the linked list
@@ -37,7 +37,7 @@ public class Main {
         );
 
 
-        var next = removeElements(head, 1);
+        var next = removeElements(head, 2);
         if (next == null) {
             System.out.println("[]");
         }

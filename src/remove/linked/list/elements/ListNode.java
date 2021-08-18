@@ -1,4 +1,4 @@
-package com.leetcode.problems.remove.linked.list.elements;
+package remove.linked.list.elements;
 
 public class ListNode {
 
