@@ -45,10 +45,10 @@ public class Solution {
             return digits[0] == 1 || digits[0] == 7;
         }
 
-        var squareSum = 0;
+        var sumSquares = 0;
         for (int digit : digits) {
-            squareSum += digit * digit;
+            sumSquares += digit * digit;
         }
-        return squareSum == 1 || isHappy(squareSum);
+        return sumSquares == 1 || isHappy(sumSquares);
     }
 }
