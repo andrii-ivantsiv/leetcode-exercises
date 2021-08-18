@@ -23,5 +23,6 @@
 hs_err_pid*
 
 # Intellij IDEA temporary files
-.idea
+**/.idea
+**/out
 *.iml
