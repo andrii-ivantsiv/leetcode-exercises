@@ -16,7 +16,7 @@ package remove.linked.list.elements;
  * Input: head = [7,7,7,7], val = 7
  * Output: []
  */
-public class Main {
+public class Solution {
 
     public static void main(String[] args) {
         var head = new ListNode(
