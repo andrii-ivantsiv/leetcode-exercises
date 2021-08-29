@@ -4,3 +4,4 @@ Solutions for:
 - Happy Number
 - Number of 1 Bits
 - Reverse Bits
+- Factorial Trailing Zeroes
