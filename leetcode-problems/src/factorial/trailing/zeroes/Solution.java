@@ -34,11 +34,12 @@ public class Solution {
     private static final ExecutorService EXECUTOR = Executors.newFixedThreadPool(AVAILABLE_PROCESSORS);
 
     public static void main(String[] args) {
-        //TODO: very slow solution
-        System.out.println(trailingZeroes(3));
-        System.out.println(trailingZeroes(5));
-        System.out.println(trailingZeroes(0));
-        System.out.println(trailingZeroes(10000));
+        System.out.println(trailingZeroesV2(3));
+        System.out.println(trailingZeroesV2(5));
+        System.out.println(trailingZeroesV2(0));
+        System.out.println(trailingZeroesV2(25));
+        System.out.println(trailingZeroesV2(10000));
+        System.out.println(trailingZeroesV2(Integer.MAX_VALUE));
 
         /*var start = Instant.now();
         System.out.println(factorialV1(10000));
@@ -56,7 +57,19 @@ public class Solution {
         System.out.println("Factorial V3 = " + Duration.between(start, end).getNano());*/
     }
 
-    public static int trailingZeroes(int n) {
+    public static int trailingZeroesV2(int n) {
+        if (n <= 0) {
+            return 0;
+        }
+        var c = 0;
+        while (n > 0) {
+            n /= 5;
+            c += n;
+        }
+        return c;
+    }
+
+    public static int trailingZeroesV1(int n) {
         var start = Instant.now();
         if (n == 0) {
             return 0;
