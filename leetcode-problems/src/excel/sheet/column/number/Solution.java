@@ -1,8 +1,5 @@
 package excel.sheet.column.number;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Given a string columnTitle that represents the column title as appear in an Excel sheet, return its corresponding column number.
  * <p>
@@ -34,36 +31,7 @@ import java.util.Map;
  */
 public class Solution {
 
-    private static final Map<Character, Integer> alphabet = new HashMap<>();
-
-    static {
-        alphabet.put('A', 1);
-        alphabet.put('B', 2);
-        alphabet.put('C', 3);
-        alphabet.put('D', 4);
-        alphabet.put('E', 5);
-        alphabet.put('F', 6);
-        alphabet.put('G', 7);
-        alphabet.put('H', 8);
-        alphabet.put('I', 9);
-        alphabet.put('J', 10);
-        alphabet.put('K', 11);
-        alphabet.put('L', 12);
-        alphabet.put('M', 13);
-        alphabet.put('N', 14);
-        alphabet.put('O', 15);
-        alphabet.put('P', 16);
-        alphabet.put('Q', 17);
-        alphabet.put('R', 18);
-        alphabet.put('S', 19);
-        alphabet.put('T', 20);
-        alphabet.put('U', 21);
-        alphabet.put('V', 22);
-        alphabet.put('W', 23);
-        alphabet.put('X', 24);
-        alphabet.put('Y', 25);
-        alphabet.put('Z', 26);
-    }
+    private static final String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     public static void main(String[] args) {
         System.out.println(titleToNumber("A")); //1
@@ -79,7 +47,7 @@ public class Solution {
         var title = 0;
         var chars = columnTitle.toCharArray();
         for (int i = 0, p = chars.length - 1; i < chars.length; i++, p--) {
-            title += alphabet.get(chars[i]) * Math.pow(alphabet.size(), p);
+            title += (alphabet.indexOf(chars[i]) + 1) * Math.pow(alphabet.length(), p);
         }
         return title;
     }
