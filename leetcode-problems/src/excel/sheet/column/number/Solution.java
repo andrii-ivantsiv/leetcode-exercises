@@ -79,7 +79,7 @@ public class Solution {
         var title = 0;
         var chars = columnTitle.toCharArray();
         for (int i = 0, p = chars.length - 1; i < chars.length; i++, p--) {
-            title += alphabet.get(chars[i]) * Math.pow(26, p);
+            title += alphabet.get(chars[i]) * Math.pow(alphabet.size(), p);
         }
         return title;
     }
