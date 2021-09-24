@@ -5,3 +5,4 @@ Solutions for:
 - Number of 1 Bits
 - Reverse Bits
 - Factorial Trailing Zeroes
+- Excel Sheet Column Number
