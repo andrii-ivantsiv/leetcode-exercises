@@ -44,11 +44,11 @@ public class Solution {
     }
 
     public static int titleToNumber(String columnTitle) {
-        var title = 0;
-        var chars = columnTitle.toCharArray();
-        for (int i = 0, p = chars.length - 1; i < chars.length; i++, p--) {
-            title += (alphabet.indexOf(chars[i]) + 1) * Math.pow(alphabet.length(), p);
+        var titleNumber = 0;
+        var titleChars = columnTitle.toCharArray();
+        for (int i = 0, p = titleChars.length - 1; i < titleChars.length; i++, p--) {
+            titleNumber += (alphabet.indexOf(titleChars[i]) + 1) * Math.pow(alphabet.length(), p);
         }
-        return title;
+        return titleNumber;
     }
 }
