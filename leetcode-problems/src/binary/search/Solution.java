@@ -1,5 +1,7 @@
 package binary.search;
 
+import static util.Assert.printAndAssert;
+
 /**
  * 704. Binary Search
  * <p>
@@ -31,9 +33,7 @@ package binary.search;
 public class Solution {
 
     public static void main(String[] args) {
-        int result = search(new int[]{-1, 0, 3, 5, 9, 12}, 9);
-        System.out.println(result);
-        assert result == 4;
+        printAndAssert(() -> search(new int[]{-1, 0, 3, 5, 9, 12}, 9), 4);
     }
 
     public static int search(int[] nums, int target) {
