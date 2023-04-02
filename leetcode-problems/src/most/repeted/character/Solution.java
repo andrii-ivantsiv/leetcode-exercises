@@ -16,7 +16,7 @@ public class Solution {
         Character maxOccuredLeter = null;
         final Map<Character, Byte> occurrence = new HashMap<>();
         for (Character c : s.toCharArray()) {
-            if (Character.isDigit(c)) continue;
+            if (!Character.isAlphabetic(c)) continue;
             Byte count = occurrence.getOrDefault(c, (byte) 0);
             occurrence.put(c, ++count);
             if (count > maxOccured) {
