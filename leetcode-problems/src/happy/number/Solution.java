@@ -3,6 +3,8 @@ package happy.number;
 import java.time.Duration;
 import java.time.Instant;
 
+import static util.Assert.printAndAssert;
+
 /**
  * Write an algorithm to determine if a number n is happy.
  * <p>
@@ -28,10 +30,10 @@ import java.time.Instant;
  */
 public class Solution {
     public static void main(String[] args) {
-        //System.out.println(isHappy(19)); //true
-        //System.out.println(isHappy(2));  //false
-        //System.out.println(isHappy(7));  //true
-        //System.out.println(isHappy(11)); //false
+        //printAndAssert(() -> isHappy(19), true);
+        //printAndAssert(() -> isHappy(2), false);
+        //printAndAssert(() -> isHappy(7), true);
+        //printAndAssert(() -> isHappy(11), false);
 
         var start = Instant.now();
         for (int i = 1; i < 1000; i++) {

@@ -6,7 +6,6 @@ import java.util.function.Supplier;
 public final class Assert {
 
     private Assert() {
-        //
     }
 
     public static <T> void printAndAssert(Supplier<T> supplier, T expected) {
@@ -14,5 +13,4 @@ public final class Assert {
         System.out.println(actual);
         assert Objects.equals(actual, expected);
     }
-
 }

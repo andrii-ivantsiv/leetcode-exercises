@@ -1,5 +1,7 @@
 package excel.sheet.column.number;
 
+import static util.Assert.printAndAssert;
+
 /**
  * Given a string columnTitle that represents the column title as appear in an Excel sheet, return its corresponding column number.
  * <p>
@@ -34,13 +36,13 @@ public class Solution {
     private static final String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     public static void main(String[] args) {
-        System.out.println(titleToNumber("A")); //1
-        System.out.println(titleToNumber("AB")); //28
-        System.out.println(titleToNumber("BB")); //54
-        System.out.println(titleToNumber("ZY")); //701
-        System.out.println(titleToNumber("AKF")); //968
-        System.out.println(titleToNumber("AMJ")); //1024
-        System.out.println(titleToNumber("FXSHRXW")); //2147483647
+        printAndAssert(() -> titleToNumber("A"), 1);
+        printAndAssert(() -> titleToNumber("AB"), 28);
+        printAndAssert(() -> titleToNumber("BB"), 54);
+        printAndAssert(() -> titleToNumber("ZY"), 701);
+        printAndAssert(() -> titleToNumber("AKF"), 968);
+        printAndAssert(() -> titleToNumber("AMJ"), 1024);
+        printAndAssert(() -> titleToNumber("FXSHRXW"), 2147483647);
     }
 
     public static int titleToNumber(String columnTitle) {

@@ -1,5 +1,7 @@
 package reverse.bits;
 
+import static util.Assert.printAndAssert;
+
 /**
  * Reverse bits of a given 32 bits unsigned integer.
  * <p>
@@ -20,7 +22,7 @@ package reverse.bits;
 public class Solution {
     public static void main(String[] args) {
         //TODO: doesn't work with big values like 3221225471
-        System.out.println(reverseBits(890));
+        printAndAssert(() -> reverseBits(890), 101111011);
     }
 
     public static int reverseBits(int n) {
