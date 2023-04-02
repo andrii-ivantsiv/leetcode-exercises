@@ -11,6 +11,8 @@ public final class Assert {
     public static <T> void printAndAssert(Supplier<T> supplier, T expected) {
         final T actual = supplier.get();
         System.out.println(actual);
-        assert Objects.equals(actual, expected);
+        if (!Objects.equals(actual, expected)) {
+            throw new AssertionError(String.format("Expected: %s but actual: %s", expected, actual));
+        }
     }
 }
