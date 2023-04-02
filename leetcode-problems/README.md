@@ -8,3 +8,4 @@ Solutions for:
 - [Excel Sheet Column Number](src/excel/sheet/column/number/Solution.java)
 - [Most repeated character](src/most/repeted/character/Solution.java)
 - [Binary search](src/binary/search/Solution.java)
+- [Count total number of colored cells](src/count/total/number/colored/cells/Solution.java)
