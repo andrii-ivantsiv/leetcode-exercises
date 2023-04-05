@@ -1,5 +1,7 @@
 package optimal.partition.string;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -39,6 +41,9 @@ public class Solution {
         printAndAssert(() -> partitionString("hdklqkcssgxlvehva"), 4);
         printAndAssert(() -> partitionString("aaaaaaaa"), 8);
         printAndAssert(() -> partitionString("abacaba"), 4);
+        printAndAssert(() -> partitionStringV1("hdklqkcssgxlvehva"), 4);
+        printAndAssert(() -> partitionStringV1("aaaaaaaa"), 8);
+        printAndAssert(() -> partitionStringV1("abacaba"), 4);
     }
 
     public static int partitionString(String s) {
@@ -53,5 +58,18 @@ public class Solution {
             }
         });
         return counter.get();
+    }
+
+    public static int partitionStringV1(String s) {
+        final Map<Character, Integer> letterScores = new HashMap<>();
+        int counter = 1;
+        for (char c : s.toCharArray()) {
+            if (letterScores.containsKey(c)) {
+                ++counter;
+                letterScores.clear();
+            }
+            letterScores.put(c, 1);
+        }
+        return counter;
     }
 }
