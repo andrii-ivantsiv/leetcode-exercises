@@ -78,8 +78,7 @@ public class Solution {
         if (alreadyCloned != null) {
             return alreadyCloned;
         }
-        final Node clonedNode = new Node(node.val);
-        cloned.put(node.val, clonedNode);
+        final Node clonedNode = cloned.computeIfAbsent(node.val, Node::new);
         for (Node neighbor : node.neighbors) {
             clonedNode.neighbors.add(clone(cloned, neighbor));
         }
