@@ -67,20 +67,20 @@ public class Solution {
     }
 
     public static Node cloneGraph(Node node) {
-        final Map<Node, Node> cloned = new HashMap<>(); // key - old node, value - cloned node
+        final Map<Integer, Node> cloned = new HashMap<>(); // key - old node, value - cloned node
         return clone(cloned, node);
     }
 
-    public static Node clone(Map<Node, Node> cloned, Node node) {
+    public static Node clone(Map<Integer, Node> cloned, Node node) {
         if (node == null) {
             return null;
         }
-        Node alreadyCloned = cloned.get(node);
+        final Node alreadyCloned = cloned.get(node.val);
         if (alreadyCloned != null) {
             return alreadyCloned;
         }
-        Node clonedNode = new Node(node.val);
-        cloned.put(node, clonedNode);
+        final Node clonedNode = new Node(node.val);
+        cloned.put(node.val, clonedNode);
         for (Node neighbor : node.neighbors) {
             clonedNode.neighbors.add(clone(cloned, neighbor));
         }
