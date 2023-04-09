@@ -61,17 +61,16 @@ import java.util.Map;
  */
 public class Solution {
 
-
     public static void main(String[] args) {
         cloneGraph(new Node(1)); // skipped testing because of complex test data creation
     }
 
     public static Node cloneGraph(Node node) {
-        final Map<Integer, Node> cloned = new HashMap<>(); // key - old node, value - cloned node
+        final Map<Integer, Node> cloned = new HashMap<>();
         return clone(cloned, node);
     }
 
-    public static Node clone(Map<Integer, Node> cloned, Node node) {
+    private static Node clone(Map<Integer, Node> cloned, Node node) {
         if (node == null) {
             return null;
         }
