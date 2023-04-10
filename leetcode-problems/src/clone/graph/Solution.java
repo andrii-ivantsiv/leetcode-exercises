@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Given a reference of a node in a connected undirected graph.
@@ -71,18 +72,21 @@ public class Solution {
     }
 
     private static Node clone(Map<Integer, Node> cloned, Node node) {
-        if (node == null) {
-            return null;
-        }
-        final Node alreadyCloned = cloned.get(node.val);
-        if (alreadyCloned != null) {
-            return alreadyCloned;
-        }
-        final Node clonedNode = cloned.computeIfAbsent(node.val, Node::new);
-        for (Node neighbor : node.neighbors) {
-            clonedNode.neighbors.add(clone(cloned, neighbor));
-        }
+        if (node == null) return null;
+        final AtomicBoolean alreadyCloned = new AtomicBoolean(false);
+        final Node clonedNode = cloned.compute(node.val, (k, v) -> getOrCreate(k, v, alreadyCloned));
+        if (alreadyCloned.get()) return clonedNode;
+        node.neighbors.forEach(neighbor ->  clonedNode.neighbors.add(clone(cloned, neighbor)));
         return clonedNode;
+    }
+
+    private static Node getOrCreate(Integer key, Node value, AtomicBoolean alreadyCloned) {
+        if (value == null) {
+            return new Node(key);
+        } else {
+            alreadyCloned.set(true);
+            return value;
+        }
     }
 
     // Definition for a Node.
