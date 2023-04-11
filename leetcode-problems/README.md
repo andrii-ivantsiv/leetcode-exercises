@@ -11,3 +11,4 @@ Solutions for:
 - [Count total number of colored cells](src/count/total/number/colored/cells/Solution.java)
 - [Optimal Partition of String](src/optimal/partition/string/Solution.java)
 - [Clone Graph](src/clone/graph/Solution.java)
+- [Valid Parentheses](src/valid/parentheses/Solution.java)

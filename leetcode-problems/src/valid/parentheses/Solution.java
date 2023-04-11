@@ -39,8 +39,11 @@ import static util.Assert.printAndAssert;
 public class Solution {
 
     public static void main(String[] args) {
-        printAndAssert(() -> isValid("()"), true);
-        printAndAssert(() -> isValid("([)]"), false);
+        printAndAssert(() -> isValidV1("()"), true);
+        printAndAssert(() -> isValidV1("([)]"), false);
+        printAndAssert(() -> isValidV1("([}}])"), false);
+        // printAndAssert(() -> isValid("()"), true);
+        // printAndAssert(() -> isValid("([)]"), false);
     }
 
     public static boolean isValid(String s) {
@@ -80,5 +83,35 @@ public class Solution {
 
     private static boolean isEven(int number) {
         return number % 2 == 0;
+    }
+
+    public static boolean isValidV1(String s) {
+        final Map<Character, Character> openClosedBrackets = Map.of(
+                '(', ')',
+                '{', '}',
+                '[', ']'
+        );
+        if (s == null || s.isBlank() || s.length() % 2 != 0) {
+            return false;
+        }
+        final List<Character> openBrackets = new ArrayList<>();
+        for (char c : s.toCharArray()) {
+            if (openClosedBrackets.containsKey(c)) {
+                openBrackets.add(c);
+            } else if (getLast(openBrackets) != null && openClosedBrackets.get(getLast(openBrackets)) == c) {
+                openBrackets.remove(openBrackets.size() - 1);
+            } else {
+                return false;
+            }
+        }
+        return openBrackets.isEmpty();
+    }
+
+    private static Character getLast(List<Character> list) {
+        if (!list.isEmpty()) {
+            return list.get(list.size() - 1);
+        } else {
+            return null;
+        }
     }
 }
