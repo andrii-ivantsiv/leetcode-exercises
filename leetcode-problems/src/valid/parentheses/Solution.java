@@ -1,9 +1,7 @@
 package valid.parentheses;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Stack;
 
 import static util.Assert.printAndAssert;
 
@@ -39,79 +37,29 @@ import static util.Assert.printAndAssert;
 public class Solution {
 
     public static void main(String[] args) {
-        printAndAssert(() -> isValidV1("()"), true);
-        printAndAssert(() -> isValidV1("([)]"), false);
-        printAndAssert(() -> isValidV1("([}}])"), false);
-        // printAndAssert(() -> isValid("()"), true);
-        // printAndAssert(() -> isValid("([)]"), false);
+        printAndAssert(() -> isValid("()"), true);
+        printAndAssert(() -> isValid("([)]"), false);
+        printAndAssert(() -> isValid("([}}])"), false);
+        printAndAssert(() -> isValid("))"), false);
     }
 
     public static boolean isValid(String s) {
-        //TODO: fix algorithm
-        if (s == null || s.isBlank() || !isEven(s.length())) {
+        if (s == null || s.isBlank() || s.length() % 2 != 0) {
             return false;
         }
-        final Map<Character, List<Integer>> brackets = new HashMap<>();
-        final char[] chars = s.toCharArray();
-        for (int i = 0; i < chars.length; i++) {
-            if (brackets.containsKey(chars[i])) {
-                brackets.get(chars[i]).add(i);
-            } else {
-                List<Integer> indexes = new ArrayList<>();
-                indexes.add(i);
-                brackets.put(chars[i], indexes);
-            }
-        }
-        if (sameSize(brackets.get('('), brackets.get(')'))) {
-            brackets.remove('(');
-            brackets.remove(')');
-        }
-        if (sameSize(brackets.get('{'), brackets.get('}'))) {
-            brackets.remove('{');
-            brackets.remove('}');
-        }
-        if (sameSize(brackets.get('['), brackets.get(']'))) {
-            brackets.remove('[');
-            brackets.remove(']');
-        }
-        return brackets.isEmpty();
-    }
-
-    private static boolean sameSize(List<Integer> listOne, List<Integer> listTwo) {
-        return listOne != null && listTwo != null && listOne.size() == listTwo.size();
-    }
-
-    private static boolean isEven(int number) {
-        return number % 2 == 0;
-    }
-
-    public static boolean isValidV1(String s) {
         final Map<Character, Character> openClosedBrackets = Map.of(
                 '(', ')',
                 '{', '}',
                 '[', ']'
         );
-        if (s == null || s.isBlank() || s.length() % 2 != 0) {
-            return false;
-        }
-        final List<Character> openBrackets = new ArrayList<>();
+        final Stack<Character> openBrackets = new Stack<>();
         for (char c : s.toCharArray()) {
             if (openClosedBrackets.containsKey(c)) {
                 openBrackets.add(c);
-            } else if (getLast(openBrackets) != null && openClosedBrackets.get(getLast(openBrackets)) == c) {
-                openBrackets.remove(openBrackets.size() - 1);
-            } else {
+            } else if (openBrackets.isEmpty() || openClosedBrackets.get(openBrackets.pop()) != c) {
                 return false;
             }
         }
         return openBrackets.isEmpty();
-    }
-
-    private static Character getLast(List<Character> list) {
-        if (!list.isEmpty()) {
-            return list.get(list.size() - 1);
-        } else {
-            return null;
-        }
     }
 }
