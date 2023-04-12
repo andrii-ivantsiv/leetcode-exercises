@@ -13,3 +13,4 @@ Solutions for:
 - [Clone Graph](src/clone/graph/Solution.java)
 - [Valid Parentheses](src/valid/parentheses/Solution.java)
 - [Removing Stars From a String](src/removing/stars/from/string/Solution.java)
+- [Simplify Path](src/simplify/path/Solution.java)
