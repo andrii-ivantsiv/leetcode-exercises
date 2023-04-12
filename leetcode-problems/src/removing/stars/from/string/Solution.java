@@ -1,7 +1,5 @@
 package removing.stars.from.string;
 
-import java.util.Stack;
-
 import static util.Assert.printAndAssert;
 
 /**
@@ -49,18 +47,15 @@ public class Solution {
     }
 
     public static String removeStars(String s) {
-        final Stack<Character> chars = new Stack<>();
+        final StringBuilder chars = new StringBuilder();
+        int lastChar;
         for (char c : s.toCharArray()) {
             if (c != '*') {
-                chars.add(c);
-            } else if (!chars.isEmpty()) {
-                chars.pop();
+                chars.append(c);
+            } else if ((lastChar = chars.length() - 1) >= 0) {
+                chars.deleteCharAt(lastChar);
             }
         }
-        final StringBuilder result = new StringBuilder();
-        for (char c : chars) {
-            result.append(c);
-        }
-        return result.toString();
+        return chars.toString();
     }
 }
