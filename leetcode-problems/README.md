@@ -12,3 +12,4 @@ Solutions for:
 - [Optimal Partition of String](src/optimal/partition/string/Solution.java)
 - [Clone Graph](src/clone/graph/Solution.java)
 - [Valid Parentheses](src/valid/parentheses/Solution.java)
+- [Removing Stars From a String](src/removing/stars/from/string/Solution.java)
