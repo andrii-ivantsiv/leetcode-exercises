@@ -1,6 +1,7 @@
 package simplify.path;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 import static util.Assert.printAndAssert;
 
@@ -49,20 +50,14 @@ public class Solution {
     }
 
     public static String simplifyPath(String path) {
-        final Stack<String> folders = new Stack<>();
+        final Deque<String> folders = new ArrayDeque<>();
         for (String s : path.split("/")) {
             if ("..".equals(s)) {
-                if (!folders.isEmpty()) {
-                    folders.pop();
-                }
-            } else if (!s.isEmpty() && !s.isBlank() && !".".equals(s)) {
-                folders.add(s);
+                folders.pollLast();
+            } else if (!s.isEmpty() && !".".equals(s)) {
+                folders.addLast(s);
             }
         }
-        final StringBuilder canonicalPath = new StringBuilder();
-        for (String s : folders) {
-            canonicalPath.append("/").append(s);
-        }
-        return canonicalPath.length() == 0 ? "/" : canonicalPath.toString();
+        return "/" + String.join("/", folders);
     }
 }
