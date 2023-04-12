@@ -1,7 +1,8 @@
 package valid.parentheses;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Map;
-import java.util.Stack;
 
 import static util.Assert.printAndAssert;
 
@@ -52,11 +53,11 @@ public class Solution {
                 '{', '}',
                 '[', ']'
         );
-        final Stack<Character> openBrackets = new Stack<>();
+        final Deque<Character> openBrackets = new ArrayDeque<>();
         for (char c : s.toCharArray()) {
             if (openClosedBrackets.containsKey(c)) {
-                openBrackets.add(c);
-            } else if (openBrackets.isEmpty() || openClosedBrackets.get(openBrackets.pop()) != c) {
+                openBrackets.addLast(c);
+            } else if (openBrackets.isEmpty() || openClosedBrackets.get(openBrackets.pollLast()) != c) {
                 return false;
             }
         }
