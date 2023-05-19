@@ -15,3 +15,4 @@ Solutions for:
 - [Removing Stars From a String](src/removing/stars/from/string/Solution.java)
 - [Simplify Path](src/simplify/path/Solution.java)
 - [Validate Stack Sequences](src/validate/stack/sequences/Solution.java)
+- [Prime numbers](src/prime/number/Solution.java)
