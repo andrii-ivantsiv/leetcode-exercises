@@ -1,6 +1,8 @@
 package prime.number;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
 import static util.Assert.printAndAssert;
@@ -15,29 +17,27 @@ import static util.Assert.printAndAssert;
 public class Solution {
 
     public static void main(String... str) {
-        printAndAssert(() -> findPrimes(2772), List.of(11, 7, 3, 3, 2, 2));
+        printAndAssert(() -> findPrimes(2772), List.of(2, 2, 3, 3, 7, 11));
         printAndAssert(() -> findPrimes(8), List.of(2, 2, 2));
     }
 
-    static List<Integer> findPrimes(int number) {
+    public static List<Integer> findPrimes(int number) {
         int result = number;
         final List<Integer> resultPrimes = new ArrayList<>();
-        final List<Integer> primes = primeNumbers(number);
-        int primeIndex = primes.size() - 1;
-        while (result > 1) {
-            int remain = result % primes.get(primeIndex);
-            if (remain == 0) {
-                resultPrimes.add(primes.get(primeIndex));
-                result = result / primes.get(primeIndex);
+        final Deque<Integer> primes = primeNumbers(number);
+        while (result > 1 && primes.peekLast() != null) {
+            if (result % primes.peekLast() == 0) {
+                resultPrimes.add(primes.peekLast());
+                result = result / primes.peekLast();
             } else {
-                primeIndex--;
+                primes.pollLast();
             }
         }
         return resultPrimes;
     }
 
-    static List<Integer> primeNumbers(int number) {
-        final List<Integer> primes = new ArrayList<>();
+    static Deque<Integer> primeNumbers(int number) {
+        final Deque<Integer> primes = new ArrayDeque<>();
         for (int i = 2; i <= number / 2; i++) {
             boolean isPrime = true;
             for (int j = 2; j <= i; j++) {
@@ -47,7 +47,7 @@ public class Solution {
                 }
             }
             if (isPrime) {
-                primes.add(i);
+                primes.addFirst(i);
             }
         }
         return primes;
